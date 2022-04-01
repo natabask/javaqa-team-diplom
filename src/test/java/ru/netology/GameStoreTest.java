@@ -24,6 +24,23 @@ public class GameStoreTest {
         store.addPlayTime("Vasiliy", 3);
         assertEquals(store.getSumPlayedTime(), 3);
     }
+    /*Суммирует ли метод addPlayTime значения*/
+    @Test
+    public void shouldAddPlayerTimeSumm(){
+        GameStore store = new GameStore();
+        Game game = store.publishGame("Нетология Баттл Онлайн", "Аркады");
+        store.addPlayTime("Vasiliy", 3);
+        store.addPlayTime("Vasiliy", 18);
+        assertEquals(store.getSumPlayedTime(), 21);
+    }
+    /*Тест на самого играющего без игроков */
+    @Test
+    public void shouldMostPlayerTimeWithoutPlayers(){
+        GameStore store = new GameStore();
+        Game game = store.publishGame("Нетология Баттл Онлайн", "Аркады");
+        assertEquals(store.getMostPlayer(),null);
+
+    }
 
     /*Тест на самого играющего*/
     @Test
@@ -45,9 +62,9 @@ public class GameStoreTest {
         assertEquals(store.getMostPlayer(),"Vasiliy");
 
     }
-/*Тест на суммирование метода addPlayTime*/
+/*Тест на самого играющего при трех значениях*/
     @Test
-    public void shouldSummPlayerTime(){
+    public void shouldMostPlayerTimeThree(){
         GameStore store = new GameStore();
         Game game = store.publishGame("Нетология Баттл Онлайн", "Аркады");
         store.addPlayTime("Genadiy", 4);
@@ -66,5 +83,13 @@ public class GameStoreTest {
     }
 
 
-    // другие ваши тесты
-}
+    /*Тест на суммирование метода getSumPlayedTime*/
+    @Test
+    public void shouldSummPlayerTeime(){
+        GameStore store = new GameStore();
+        Game game = store.publishGame("Нетология Баттл Онлайн", "Аркады");
+        store.addPlayTime("Genadiy", 4);
+        store.addPlayTime("Vasiliy", 5);
+        store.addPlayTime("Genadiy", 2);
+        assertEquals(store.getSumPlayedTime(),11);
+}}
